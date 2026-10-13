@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="app-container">
+
+        <header class="app-header">
+            <p class="eyebrow">YOUR PRODUCTIVITY SPACE</p>
+            <h1>My Task Manager</h1>
+            <p class="subtitle">Plan your day. Get things done.</p>
+        </header>
+
+        <section class="task-entry">
+            <label for="taskInput">What needs to get done?</label>
+
+            <div class="input-row">
+                <input
+                    type="text"
+                    id="taskInput"
+                    placeholder="Enter your next task..."
+                >
+                <button id="addButton">+ Add Task</button>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="stat-card">
+                <span class="stat-label">Total Tasks</span>
+                <span id="totalTasks" class="stat-number">0</span>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">Completed</span>
+                <span id="completedTasks" class="stat-number">0</span>
+            </div>
+        </section>
+
+        <section class="task-section">
+            <div class="section-heading">
+                <h2>Your Tasks</h2>
+                <p>Small steps lead to big results.</p>
+            </div>
+
+            <div class="filters">
+                <button id="allButton">All</button>
+                <button id="pendingButton">Pending</button>
+                <button id="completedButton">Completed</button>
+            </div>
+
+           <ul id="taskList"></ul>
+<p id="emptyMessage" class="empty-message" hidden>
+    No tasks here yet. Add a task to get started!
+</p>
+        </section>
+
+        <footer class="app-footer">
+            Stay focused. You've got this!
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

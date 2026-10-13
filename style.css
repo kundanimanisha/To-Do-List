@@ -1,0 +1,487 @@
+
+/* ---------- Global reset ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #6750d8;
+    --primary-dark: #5140b5;
+    --background: #f5f6fc;
+    --surface: #ffffff;
+    --text: #252640;
+    --muted: #858aa3;
+    --border: #e8e9f2;
+    --success: #198754;
+    --danger: #d94352;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:
+        radial-gradient(ellipse at top left, #e9e5ff 0, transparent 35%),
+        var(--background);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 48px 20px;
+}
+
+/* ---------- Main heading ---------- */
+h1 {
+    max-width: 760px;
+    margin: 0 auto 12px;
+    text-align: center;
+    font-size: clamp(28px, 5vw, 38px);
+    font-weight: 750;
+    letter-spacing: -1px;
+    color: var(--text);
+}
+
+h1::after {
+    content: "";
+    display: block;
+    width: 48px;
+    height: 4px;
+    margin: 14px auto 28px;
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+/* ---------- Task input ---------- */
+#taskInput {
+    display: block;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 14px;
+    padding: 16px 18px;
+    font-size: 16px;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    outline: none;
+    box-shadow: 0 5px 20px rgba(40, 35, 90, 0.04);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#taskInput::placeholder {
+    color: #a4a7b9;
+}
+
+#taskInput:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(103, 80, 216, 0.12);
+}
+
+/* ---------- Buttons ---------- */
+button {
+    font: inherit;
+    font-size: 14px;
+    font-weight: 650;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 16px;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+button:focus-visible {
+    outline: 3px solid #b8adff;
+    outline-offset: 3px;
+}
+
+/* ---------- Add task ---------- */
+#addButton {
+    display: block;
+    margin: 0 auto 32px;
+    padding: 13px 26px;
+    color: #ffffff;
+    background: var(--primary);
+    box-shadow: 0 6px 14px rgba(103, 80, 216, 0.2);
+}
+
+#addButton:hover {
+    background: var(--primary-dark);
+    box-shadow: 0 8px 18px rgba(103, 80, 216, 0.28);
+}
+
+/* ---------- Filter buttons ---------- */
+.filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 auto 24px;
+}
+
+.filters button {
+    background: var(--surface);
+    color: #686d85;
+    border: 1px solid var(--border);
+    padding: 10px 20px;
+}
+
+.filters button:hover {
+    background: #eeebff;
+    color: var(--primary-dark);
+    border-color: #d5ceff;
+}
+
+/* ---------- Task list ---------- */
+#taskList {
+    list-style: none;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+#taskList li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 17px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(40, 35, 90, 0.035);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#taskList li:hover {
+    border-color: #d7d0ff;
+    box-shadow: 0 8px 22px rgba(40, 35, 90, 0.075);
+}
+
+/* ---------- Checkboxes ---------- */
+#taskList input[type="checkbox"] {
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+/* ---------- Task text ---------- */
+#taskList li span {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.completed {
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-thickness: 1.5px;
+}
+
+/* ---------- Edit and Delete buttons ---------- */
+#taskList li button {
+    flex-shrink: 0;
+    padding: 9px 13px;
+}
+
+#taskList li button:not(:last-child) {
+    color: var(--primary-dark);
+    background: #eeebff;
+}
+
+#taskList li button:not(:last-child):hover {
+    background: #ded7ff;
+}
+
+#taskList li button:last-child {
+    color: var(--danger);
+    background: #fff0f1;
+}
+
+#taskList li button:last-child:hover {
+    background: #ffe0e3;
+}
+
+/* ---------- Task counters ---------- */
+#totalTasks,
+#completedTasks {
+    color: var(--primary);
+    font-weight: 750;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Responsive mobile layout ---------- */
+@media (max-width: 520px) {
+    body {
+        padding: 28px 12px;
+    }
+
+    h1 {
+        margin-bottom: 10px;
+    }
+
+    #taskInput {
+        padding: 14px;
+    }
+
+    .filters {
+        gap: 7px;
+    }
+
+    .filters button {
+        padding: 9px 13px;
+    }
+
+    #taskList li {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 13px;
+    }
+
+    #taskList li span {
+        flex-basis: calc(100% - 35px);
+    }
+
+    #taskList li button {
+        padding: 9px 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+
+}
+
+/* Professional dashboard layout */
+
+body {
+    background: #f4f5fb;
+    color: #252640;
+    padding: 48px 20px;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 36px;
+    background: #ffffff;
+    border: 1px solid #e8e9f2;
+    border-radius: 24px;
+    box-shadow: 0 18px 60px rgba(40, 35, 90, 0.08);
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.eyebrow {
+    color: #6750d8;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.app-header h1 {
+    margin: 0 0 10px;
+    font-size: 36px;
+    letter-spacing: -1px;
+    color: #252640;
+}
+
+.app-header h1::after {
+    display: none;
+}
+
+.subtitle {
+    color: #858aa3;
+    font-size: 15px;
+}
+
+.task-entry {
+    padding: 22px;
+    background: #f8f7ff;
+    border: 1px solid #eeebff;
+    border-radius: 16px;
+}
+
+.task-entry label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+}
+
+#taskInput {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    background: #ffffff;
+}
+
+#addButton {
+    flex-shrink: 0;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 22px 0 34px;
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e8e9f2;
+    border-radius: 16px;
+}
+
+.stat-label {
+    color: #858aa3;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.stat-number {
+    color: #6750d8;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.section-heading {
+    margin-bottom: 18px;
+}
+
+.section-heading h2 {
+    font-size: 21px;
+    margin-bottom: 6px;
+}
+
+.section-heading p {
+    color: #858aa3;
+    font-size: 13px;
+}
+
+.filters {
+    justify-content: flex-start;
+    margin-bottom: 18px;
+}
+
+.filters button {
+    padding: 10px 18px;
+    border-radius: 9px;
+}
+
+.app-footer {
+    border-top: 1px solid #eeeeF5;
+    margin-top: 30px;
+    padding-top: 20px;
+    text-align: center;
+    color: #9296aa;
+    font-size: 12px;
+}
+
+@media (max-width: 560px) {
+    body {
+        padding: 16px 10px;
+    }
+
+    .app-container {
+        padding: 22px 14px;
+        border-radius: 18px;
+    }
+
+    .app-header h1 {
+        font-size: 29px;
+    }
+
+    .task-entry {
+        padding: 15px;
+    }
+
+    .input-row {
+        flex-direction: column;
+    }
+
+    #addButton {
+        width: 100%;
+    }
+
+    .stats {
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-number {
+        font-size: 25px;
+    }
+
+    .filters {
+        gap: 7px;
+    }
+
+    .filters button {
+        padding: 9px 12px;
+    }
+}
+
+.filters button.active {
+    background: #6750d8;
+    color: #ffffff;
+    border-color: #6750d8;
+    box-shadow: 0 4px 10px rgba(103, 80, 216, 0.18);
+}
+
+.filters button.active:hover {
+    background: #5140b5;
+    color: #ffffff;
+}
+
+.empty-message {
+    margin: 12px 0;
+    padding: 30px 16px;
+    text-align: center;
+    color: #858aa3;
+    background: #faf9ff;
+    border: 1px dashed #dcd6ff;
+    border-radius: 14px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.empty-message[hidden] {
+    display: none;
+}
+
